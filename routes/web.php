@@ -19,6 +19,6 @@ Route::get('/',[PagesController::class,'index']);
 
 
 Route::prefix('admin')->group(function () {
-    Route::get('oi',[PagesController::class,'admin']);
+    Route::get('/',[PagesController::class,'admin']);
 });
 
