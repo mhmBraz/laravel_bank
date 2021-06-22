@@ -5,18 +5,24 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Users;
-use App\Models\Usuarios;
 
 class PagesController extends Controller
 {
-    public function index()
+    public function indexView()
     {
+        return view('welcome');
+    }
 
-        $users = Usuarios::where('id', 1)
-            ->get();
-        $teste = json_decode($users);
-        echo json_encode($teste[0]->nome);
-        return view('welcome', ['users' => $users]);
+    public function indexLogin(Request $req)
+    {
+        $login = $req->all();
+        $User = Users::where('login', $login["login"])
+        ->first();
+
+        $User->name = "rodrigo";
+        $User->created_at = date('Y-m-d H:i:s');
+        $User->save();
+        return response()->json($User);
     }
 
     public function admin()
