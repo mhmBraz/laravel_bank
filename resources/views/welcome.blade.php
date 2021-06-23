@@ -8,23 +8,25 @@
     <div class="row  border border-primary rounded p-5">
         <p class="d-flex justify-content-center fs-1 mb-0"> Login </p>
         <hr class="mt-2">
-        <div class="col-lg-6">
+        <div class="col-lg-12">
+            <div class="mx-5">
+                <div class="form-group mb-3 mx-5">
+                    <label class="form-label small mb-0"> Usuario </label>
+                    <input type="text" class="form-control" id="login">
 
-            <div class="form-group mb-3">
-                <label class="form-label small mb-0"> Usuario </label>
-                <input type="text" class="form-control" id="login">
+                </div>
 
-            </div>
+                <div class="form-group mb-3 mx-5">
+                    <label class="form-label small mb-0"> Senha </label>
+                    <input type="password" class="form-control" id="password">
+                </div>
+                <div class="d-flex align-items-center justify-content-center">
+                    <button id="enter" class="btn btn-primary "> Entrar </button>
+                </div>
 
-            <div class="form-group mb-3">
-                <label class="form-label small mb-0"> Senha </label>
-                <input type="password" class="form-control" id="password">
-            </div>
-        </div>
-
-        <div class="col-lg-6 d-flex align-items-center justify-content-center">
-            <div>
-                <button id="enter" class="btn btn-primary"> Entrar </button>
+                <div class="d-flex align-items-start justify-content-start mx-5">
+                    <a href=""> Lembra senha</a>
+                </div>
             </div>
         </div>
     </div>

@@ -16,7 +16,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PagesController;
 
 Route::get('/',[PagesController::class,'indexView']);
-Route::get('/get',[PagesController::class,'indexLogin']);
+Route::get('/get',[PagesController::class,'indexCheckLogin']);
 
 
 Route::prefix('admin')->group(function () {

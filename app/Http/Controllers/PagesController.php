@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\User;
 use Illuminate\Http\Request;
 use App\Models\Users;
+use App\Providers\LoginService;
+use Exception;
 
 class PagesController extends Controller
 {
@@ -13,16 +15,39 @@ class PagesController extends Controller
         return view('welcome');
     }
 
-    public function indexLogin(Request $req)
+    public function indexCheckLogin(Request $req)
     {
-        $login = $req->all();
-        $User = Users::where('login', $login["login"])
-        ->first();
+        $arr = [];
+        $information = $req->all();
+        $User = Users::where('login', $information["login"])
+            ->first();
+        try {
+            if ($User != null) {
+                if ($User->password == $information["password"]) {
+                    $arr = [
+                        'status' => true,
+                        'message' => 'Usuario encontrado'
+                    ];
+                } else {
+                    $arr = [
+                        'status' => true,
+                        'message' => 'Usuario ou senha incorretos'
+                    ];
+                }
+            } else {
+                $arr = [
+                    'status' => true,
+                    'message' => 'Usuario não encontrado'
+                ];
+            }
+        } catch (Exception $e) {
+            $arr = [
+                'status' => false,
+                'message' => 'Ocorreu um erro ao buscar usuario'
+            ];
+        }
 
-        $User->name = "rodrigo";
-        $User->created_at = date('Y-m-d H:i:s');
-        $User->save();
-        return response()->json($User);
+        return response()->json($arr);
     }
 
     public function admin()
