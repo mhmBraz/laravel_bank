@@ -12,13 +12,24 @@ $(document).ready(function () {
             );
         } else {
             $.ajax({
-                method: 'get',
-                url: '/get',
-                data: { login, password }
+                method: 'post',
+                url: '/post',
+                data: {login, password}
             }).done(function (data) {
+                if (data.status) {
+                    Swal.fire(
+                        'Bem vindo ' + data.name + '!',
+                        '',
+                        'success'
+                    );
+                } else {
+                    Swal.fire(
+                        data.message,
+                        '',
+                        'error'
+                    );
+                }
             });
-
         }
-
     });
 })

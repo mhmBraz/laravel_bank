@@ -20,9 +20,6 @@
     <header>
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="collpase navbar-collapse">
-                <a href="/" class=" navbar-brand">
-                    <img src="" alt="">
-                </a>
                 <ul class="navbar-nav">
                     <li class="nav-item">
                         <a href="/" class="nav-link">Inicio</a>
@@ -39,6 +36,7 @@
                 </ul>
             </div>
         </nav>
+        <hr class="m-1">
     </header>
     @yield('content')
     <footer>
