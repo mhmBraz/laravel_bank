@@ -17,7 +17,8 @@ use App\Http\Controllers\PagesController;
 
 Route::prefix('/')->group(function () {
     Route::get('/', [PagesController::class, 'indexView']);
-    Route::post('/post', [PagesController::class, 'indexCheckLogin']);
+    Route::post('/postLogin', [PagesController::class, 'indexCheckLogin']);
+  Route::post('/postRemember', [PagesController::class, 'indexRemember']);
 });
 
 
