@@ -34,11 +34,12 @@ $(document).ready(function () {
   });
 
   $('#savePassword').on('click', function () {
-    let email = $('#rememberEmail').val();
-    let login = $('#rememberLogin').val();
-    let question = $('#rememberSecretQuestion').val();
-
-    if (email == '' || login == '') {
+    let rememberEmail = $('#rememberEmail').val();
+    let rememberLogin = $('#rememberLogin').val();
+    let rememberQuestion = $('#rememberSecretQuestion').val();
+    let rememberPassword = $('#rememberNewPassword').val();
+      console.log(rememberPassword);
+    if (rememberEmail == '' || rememberLogin == '') {
       Swal.fire(
         'Existem campos obrigatorios vazios',
         '',
@@ -48,10 +49,12 @@ $(document).ready(function () {
       $.ajax({
         method: 'post',
         url: '/postRemember',
-        data: {email, login, question}
+        data: {rememberEmail, rememberLogin, rememberQuestion,rememberPassword}
       }).done(function (data) {
+        if (data.status) {
+        }
       });
-      $('#rememberPassword').modal('hide');
+      //$('#rememberPassword').modal('hide');
     }
 
   });

@@ -116,18 +116,22 @@
 
         <div class="modal-body">
           <div class="container">
-            <div class="row align-items-start">
+            <div id="divRemember" class="row align-items-start">
               <div class="form-group col-12">
                 <label for="login" class="form-label small mb-0"> E-mail<span class="text-danger"> *</span> </label>
-                <input type="email" class="form-control" id="rememberEmail">
+                <input id="rememberEmail" type="email" class="form-control">
               </div>
-              <div class="form-group col">
+              <div class="form-group col-6">
                 <label for="login" class="form-label small mb-0"> login <span class="text-danger"> *</span> </label>
-                <input type="text" class="form-control" id="rememberLogin">
+                <input id="rememberLogin" type="text" class="form-control">
               </div>
-              <div class="form-group col">
+              <div class="form-group col-6">
                 <label for="login" class="form-label small mb-0"> Palavra secreta </label>
-                <input type="text" class="form-control" id="rememberSecretQuestion">
+                <input id="rememberSecretQuestion" type="text" class="form-control">
+              </div>
+              <div class="form-group col mt-2">
+                <label for="login" class="form-label small mb-0"> Nova Senha </label>
+                <input id="rememberNewPassword" type="password" class="form-control">
               </div>
             </div>
           </div>
@@ -135,8 +139,9 @@
         </div>
 
         <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-          <button id="savePassword" type="button" class="btn btn-primary">Salvar senha</button>
+          <button type="button" class="btn btn-secondary rounded-0" data-bs-dismiss="modal">Close</button>
+          <button id="savePassword" type="button" class="btn btn-primary rounded-0"><span id="nameRemember"> Salvar senha</span>
+          </button>
         </div>
       </div>
     </div>

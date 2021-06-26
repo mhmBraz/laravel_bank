@@ -14,16 +14,14 @@ class PagesController extends Controller {
   }
 
   public function indexCheckLogin(Request $req) {
-    $information = $req->all();
-    $information = LoginService::ServiceLogin($information);
-    return response()->json($information);
+
+    return response()->json(LoginService::ServiceLogin($req->all()));
 
   }
 
   public function indexRemember(Request $req) {
-    $information = $req->all();
-    $information = LoginService::ServiceRemember($information);
-    return response()->json($information);
+
+    return response()->json(LoginService::ServiceRemember($req->all()));
 
   }
 
