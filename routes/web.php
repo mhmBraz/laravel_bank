@@ -13,16 +13,17 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-use App\Http\Controllers\PagesController;
+use App\Http\Controllers\IndexController;
 
 Route::prefix('/')->group(function () {
-    Route::get('/', [PagesController::class, 'indexView']);
-    Route::post('/postLogin', [PagesController::class, 'indexCheckLogin']);
-  Route::post('/postRemember', [PagesController::class, 'indexRemember']);
+    Route::get('/', [IndexController::class, 'indexView']);
+    Route::get('/createAccount', [IndexController::class, 'createAccountView']);
+    Route::post('/postLogin', [IndexController::class, 'indexCheckLogin']);
+  Route::post('/postRemember', [IndexController::class, 'indexRemember']);
 });
 
 
 Route::prefix('admin')->group(function () {
-    Route::get('/', [PagesController::class, 'admin']);
+    Route::get('/', [IndexController::class, 'admin']);
 });
 

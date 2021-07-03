@@ -5,7 +5,7 @@ namespace App\Providers;
 use App\Models\Users;
 use phpDocumentor\Reflection\Utils;
 
-class LoginService {
+class IndexService {
     static function ServiceLogin($pArr) {
         try {
             $arr = [];
@@ -14,11 +14,19 @@ class LoginService {
 
             if ($User != null) {
                 if ($User->password == $pArr["password"]) {
-                    $arr = [
-                        'status' => true,
-                        'message' => 'Usuario encontrado',
-                        'name' => $User->name
-                    ];
+                    if ($User->blockedAccount != 3) {
+
+                        $arr = [
+                            'status' => true,
+                            'message' => 'Usuario encontrado',
+                            'name' => $User->name
+                        ];
+                    } else {
+                        $arr = [
+                            'status' => false,
+                            'message' => 'Usuario bloqueado, entre contato com o administrador'
+                        ];
+                    }
                 } else {
                     $arr = [
                         'status' => false,
@@ -55,26 +63,26 @@ class LoginService {
                             $User->save();
                             $arr = [
                                 'status' => true,
-                                'message' => 'senha alterada com sucesso'
+                                'message' => 'Senha alterada com sucesso'
                             ];
                         } else {
                             $User->blockedAccount += 1;
                             $User->save();
                             $arr = [
                                 'status' => false,
-                                'message' => 'não foi possivel mudar a senha, campos incorretos'
+                                'message' => 'Não foi possivel mudar a senha, campos incorretos'
                             ];
                         }
                     } else {
                         $arr = [
                             'status' => false,
-                            'message' => 'não foi possivel mudar a senha, campos incorretos'
+                            'message' => 'Não foi possivel mudar a senha, campos incorretos'
                         ];
                     }
                 } else {
                     $arr = [
                         'status' => false,
-                        'message' => 'Usuario bloqueado'
+                        'message' => 'Usuario bloqueado, entre contato com o administrador'
                     ];
                 }
             }
