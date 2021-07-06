@@ -1,10 +1,10 @@
 $(document).ready(function () {
 
     $('#enter').on('click', function () {
-        let login = $('#login').val();
+        let email = $('#login').val();
         let password = $('#password').val();
 
-        if (login == '' || password == '') {
+        if (email == '' || password == '') {
             Swal.fire(
                 'Campos em branco!',
                 'Por favor, preencha todos os campos!',
@@ -14,7 +14,7 @@ $(document).ready(function () {
             $.ajax({
                 method: 'post',
                 url: '/postLogin',
-                data: {login, password}
+                data: {email, password}
             }).done(function (data) {
                 if (data.status) {
                     Swal.fire(
