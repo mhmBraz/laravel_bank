@@ -15,27 +15,29 @@
     <link rel="stylesheet"
           href="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/10.16.0/sweetalert2.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+    <link href="{{asset('css/all.min.css')}}" rel="stylesheet">
 
 </head>
 
 <body>
 <header>
     <nav class="navbar navbar-expand-lg navbar-light">
-        <div class="collpase navbar-collapse">
-            <ul class="navbar-nav">
-                <li class="nav-item">
-                    <a href="/" class="nav-link">Inicio</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/createAccount" class="nav-link">Criar Conta</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/admin" class="nav-link">Admin</a>
-                </li>
-                <li class="nav-item">
-                    <a href="/" class="nav-link">Sair</a>
-                </li>
-            </ul>
+        <div class="container">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText"
+                    aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <i class="fas fa-ellipsis-v"></i>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/createAccount">CreateAccount</a>
+                    </li>
+                </ul>
+                <span class="navbar-text"> Sair </span>
+            </div>
         </div>
     </nav>
     <hr class="m-1">
@@ -54,6 +56,25 @@
 {{--<script src="{{asset('js/mdb.min.js')}}"></script>--}}
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"
         integrity="sha256-9/aliU8dGd2tb6OSsuzixeV4y/faTqgFtohetphbbj0=" crossorigin="anonymous"></script>
+
+<script> function alertGlobal(alert, message) {
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 3500,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+        Toast.fire({
+            icon: alert,
+            title: message
+        })
+    }
+</script>
 @yield('scripts')
 </body>
 

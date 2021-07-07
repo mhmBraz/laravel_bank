@@ -2,57 +2,46 @@
 
 namespace App\Providers;
 
+use App\Models\User;
 use App\Models\Users;
-use phpDocumentor\Reflection\Utils;
+use Illuminate\Support\Facades\Auth;
+use Exception;
 
 class IndexService {
     static function ServiceLogin($pArr) {
+        $arr = [];
         try {
-            $arr = [];
-            $User = Users::where('login', $pArr["login"])
-                ->first();
-
-            if ($User != null) {
-                if ($User->password == $pArr["password"]) {
-                    if ($User->blockedAccount != 3) {
-
-                        $arr = [
-                            'status' => true,
-                            'message' => 'Usuario encontrado',
-                            'name' => $User->name
-                        ];
-                    } else {
-                        $arr = [
-                            'status' => false,
-                            'message' => 'Usuario bloqueado, entre contato com o administrador'
-                        ];
-                    }
-                } else {
-                    $arr = [
-                        'status' => false,
-                        'message' => 'senha incorreta'
-                    ];
-                }
-            } else {
+            if (Auth::attempt($pArr)) {
+                $arr = [
+                    'status' => true,
+                    'message' => 'Usuario encontrado',
+                    'name' => Auth()->user()->name
+                ];
+            }else{
                 $arr = [
                     'status' => false,
-                    'message' => 'Usuario não encontrado'
+                    'message' => 'E-mail ou senha incorretos'
                 ];
             }
         } catch (Exception $e) {
             $arr = [
                 'status' => false,
-                'message' => 'Ocorreu um erro ao buscar usuario'
+                'message' => 'Erro ao encontra usuario',
+                'error' => $e->getMessage()
             ];
         }
         return $arr;
+    }
+
+    static function ServiceLogout() {
+        Auth::logout();
     }
 
     static function ServiceRemember($pArr) {
 
         try {
             $arr = [];
-            $User = Users::where(['email' => $pArr["rememberEmail"]])
+            $User = User::where(['email' => $pArr["rememberEmail"]])
                 ->first();
 
             if ($User != null) {

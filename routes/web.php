@@ -14,14 +14,24 @@ use Illuminate\Support\Facades\Route;
 */
 
 use App\Http\Controllers\IndexController;
+use App\Http\Controllers\CreateAccountController;
 
 Route::prefix('/')->group(function () {
     Route::get('/', [IndexController::class, 'indexView']);
-    Route::get('/createAccount', [IndexController::class, 'createAccountView']);
+
+
+    Route::get('/indexGetLogin', [IndexController::class, 'indexCheckLogin']);
     Route::post('/postLogin', [IndexController::class, 'indexCheckLogin']);
-  Route::post('/postRemember', [IndexController::class, 'indexRemember']);
+    Route::post('/postRemember', [IndexController::class, 'indexRemember']);
 });
 
+Route::prefix('createAccount')->group(function () {
+    Route::get('/', [CreateAccountController::class, 'createAccountView']);
+
+    Route::get('/createGetLogin', [CreateAccountController::class, 'createCheckLogin']);
+    Route::get('/createGetEmail', [CreateAccountController::class, 'createGetEmail']);
+    Route::post('/create', [CreateAccountController::class, 'create']);
+});
 
 Route::prefix('admin')->group(function () {
     Route::get('/', [IndexController::class, 'admin']);

@@ -28,7 +28,7 @@
                     <hr class="mt-0">
 
                     <input type="text" class="form-control mb-1" id="inputName" placeholder="Name">
-                    <input type="text" class="form-control mb-1" id="inputEmail" placeholder="E-mail">
+                    <input type="email" class="form-control mb-1" id="inputEmail" placeholder="E-mail" >
                     <input type="text" class="form-control mb-1" id="inputKeyword" placeholder="Keyword">
                 </div>
             </div>
@@ -38,9 +38,9 @@
                     <h1 class="h6  text-center"> Endereço </h1>
                     <hr class="mb-4">
                     <div class="d-flex justify-content-between align-items-center mt-4">
-                        <input id="inputCep" type="text" class="form-control w-75" placeholder="CEP">
+                        <input id="inputCep" type="text" class="form-control w-75" placeholder="CEP" maxlength="8">
                         <div>
-                            <button id="btnCep" class="btn btn-secondary">Buscar</button>
+                            <button id="inputCepBusca" class="btn btn-secondary">Buscar</button>
                         </div>
                     </div>
                     <div class="row mt-2">
@@ -51,29 +51,22 @@
                             <input id="inputEstado" type="text" class="form-control my-1" placeholder="Estado" disabled>
                         </div>
                     </div>
-                    <div class="row mt-2">
+                    <div class="row mt-2  d-flex justify-content-center align-items-center">
                         <div class="col-lg-6 pr-lg-1">
-                            <input id="inputBairro" type="text" class="form-control my-1" placeholder="Bairro" disabled>
-                        </div>
-                        <div class="col-lg-6 pl-lg-1">
-                            <input id="inputComplemento" type="text" class="form-control my-1"
-                                   placeholder="Complemento">
+                            <input id="inputBairro" type="text" class="form-control my-1 " placeholder="Bairro" disabled>
                         </div>
                     </div>
-                    <div class="row">
+                    <div class="row  d-flex justify-content-center align-items-center">
                         <div class="col-lg-8 pr-lg-1">
                             <input id="inputLogradouro" type="text" class="form-control my-1" placeholder="Logradouro"
                                    disabled>
-                        </div>
-                        <div class="col-lg-4 pl-lg-1">
-                            <input id="inputNum" type="text" class="form-control my-1" placeholder="Número">
                         </div>
                     </div>
                 </div>
             </div>
             <div class="row w-100 mx-0">
                 <div id="alert" class="w-100 mx-3 my-2"></div>
-                <button id="btnSignup" class="btn btn-primary btn-block">Criar conta</button>
+                <button id="inputSignup" class="btn btn-primary btn-block">Criar conta</button>
             </div>
         </div>
     </div>

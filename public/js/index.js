@@ -13,7 +13,7 @@ $(document).ready(function () {
         } else {
             $.ajax({
                 method: 'post',
-                url: '/postLogin',
+                url: '/indexGetLogin',
                 data: {email, password}
             }).done(function (data) {
                 if (data.status) {

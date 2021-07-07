@@ -2,22 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\User;
 use Illuminate\Http\Request;
-use App\Models\Users;
 use App\Providers\IndexService;
-use Exception;
 
 class IndexController extends Controller {
     public function indexView() {
         return view('welcome');
     }
 
-    public function createAccountView() {
-
-        return view('createAccount');
-
-    }
 
     public function indexCheckLogin(Request $req) {
 

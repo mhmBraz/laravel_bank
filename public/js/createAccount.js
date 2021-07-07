@@ -3,7 +3,7 @@ $(document).ready(function () {
     // $('#inputCidade').removeClass()
     // $('#inputCidade').hasClass()
     $('#inputCepBusca').on('click', function () {
-        if ($('#inputCep').val() != '') {
+        if ($('#inputCep').val() != '' && $('#inputCep').val().length >= 8) {
             let cep = $('#inputCep').val();
             $.ajax({
                 method: 'get',
@@ -15,24 +15,56 @@ $(document).ready(function () {
                     $('#inputBairro').val(data.bairro);
                     $('#inputLogradouro').val(data.logradouro);
                 } else {
-                    Swal.fire(
-                        'CPF não encontrado, digite novamente',
-                        '',
-                        'error'
-                    );
+                    alertGlobal('error', 'CPF não encontrado, digite novamente');
                 }
             });
         } else {
-            Swal.fire(
-                'Campo "CPF" em branco',
-                '',
-                'error'
-            );
+            alertGlobal('error', 'Campo "CEP" em branco ou "CEP" não encontrado');
+        }
+    });
+    $('#inputLogin').blur(function () {
+        if ($('#inputLogin').val() != '') {
+
+            let login = $('#inputLogin').val();
+            $.ajax({
+                method: 'get',
+                url: '/createAccount/createGetLogin',
+                data: {login}
+            }).done(function (data) {
+                if (data.status) {
+                    addClassIsvalid($('#inputLogin'));
+                    alertGlobal('error', 'Login já em uso');
+                } else {
+                    addClassValid($('#inputLogin'));
+                    alertGlobal('success', 'Login disponivel');
+                }
+            });
+        }
+    });
+    $('#inputEmail').blur(function () {
+
+        if ($('#inputEmail').val() != '' && validateEmail($('#inputEmail').val()) == true) {
+
+            let email = $('#inputEmail').val();
+            $.ajax({
+                method: 'get',
+                url: '/createAccount/createGetEmail',
+                data: {email}
+            }).done(function (data) {
+                if (data.status) {
+                    addClassIsvalid($('#inputEmail'));
+                    alertGlobal('error', 'Email já em uso');
+                } else {
+                    alertGlobal('success', 'Email disponivel');
+                    addClassValid($('#inputEmail'));
+                }
+            });
+        } else if ($('#inputEmail').val() != '' && validateEmail($('#inputEmail').val()) == false) {
+            alertGlobal('error', 'Email invalido');
         }
     });
     $('#inputSignup').on('click', function () {
         let check = true;
-
         if ($('#inputLogin').val() != '') {
             addClassValid($('#inputLogin'));
         } else {
@@ -61,7 +93,14 @@ $(document).ready(function () {
             check = false;
         }
 
-        if ($('#inputCidade').val() != '') {
+        if ($('#inputCep').val() != '') {
+            addClassValid($('#inputCep'));
+        } else {
+            addClassIsvalid($('#inputCep'));
+            check = false;
+        }
+
+        if ($('#inputCep').val() != '') {
             addClassValid($('#inputCidade'));
             addClassValid($('#inputEstado'));
             addClassValid($('#inputBairro'));
@@ -76,15 +115,34 @@ $(document).ready(function () {
 
         if (check == true) {
 
-        } else {
-            Swal.fire(
-                'Campos em branco, preencher todos os campos em vermelho',
-                '',
-                'error'
-            );
-        }
-    })
+            let login = $('#inputLogin').val();
+            let password = $('#inputPassword').val();
+            let name = $('#inputName').val();
+            let email = $('#inputEmail').val();
+            let keyword = $('#inputKeyword').val();
+            let cep = $('#inputCep').val();
+            let cidade = $('#inputCidade').val();
+            let estado = $('#inputEstado').val();
+            let bairro = $('#inputBairro').val();
+            let logradouro = $('#inputLogradouro').val();
 
+            $.ajax({
+                method: 'post',
+                url: '/createAccount/create',
+                data: {
+                    login, password,
+                    name, email,
+                    keyword, cep,
+                }
+            }).done(function (data) {
+
+            });
+
+
+        } else {
+            alertGlobal('error', 'Campos em branco, preencher todos os campos em vermelho');
+        }
+    });
 
     function addClassValid(pInput) {
         pInput.removeClass('is-invalid');
@@ -94,6 +152,11 @@ $(document).ready(function () {
     function addClassIsvalid(pInput) {
         pInput.removeClass('is-valid');
         pInput.addClass('is-invalid');
+    }
+
+    function validateEmail(email) {
+        var re = /\S+@\S+\.\S+/;
+        return re.test(email);
     }
 
 })

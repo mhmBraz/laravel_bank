@@ -13,12 +13,12 @@
       <h1 class="text-center mb-0"> Login </h1>
       <hr class="mt-2">
       <div class="form-group mb-3">
-        <label for="login" class="form-label small mb-0"> Usuario </label>
+        <label for="login" class="form-label small mb-0"> <i class="fas fa-at"></i> E-mail </label>
         <input type="text" class="form-control" id="login">
       </div>
 
       <div class="form-group mb-3">
-        <label for="password" class="form-label small mb-0"> Senha </label>
+        <label for="password" class="form-label small mb-0"> <i class="fas fa-key"></i> Senha </label>
         <input type="password" class="form-control" id="password">
         <small>
           <a class="link-dark text-decoration-none" data-bs-toggle="modal" href="#rememberPassword"
@@ -29,7 +29,7 @@
       </div>
 
       <div class="d-flex align-items-center justify-content-center mt-0">
-        <button id="enter" class="btn btn-primary rounded-0"> Entrar</button>
+        <button id="enter" class="btn btn-primary rounded-0"> Entrar <i class="fas fa-sign-in-alt"></i> </button>
       </div>
     </div>
   </div>
