@@ -6,6 +6,7 @@ use App\Models\User;
 use App\Models\Users;
 use Illuminate\Support\Facades\Auth;
 use Exception;
+use Illuminate\Support\Facades\Hash;
 
 class IndexService {
     static function ServiceLogin($pArr) {
@@ -17,7 +18,7 @@ class IndexService {
                     'message' => 'Usuario encontrado',
                     'name' => Auth()->user()->name
                 ];
-            }else{
+            } else {
                 $arr = [
                     'status' => false,
                     'message' => 'E-mail ou senha incorretos'
@@ -48,7 +49,7 @@ class IndexService {
                 if ($User->blockedAccount != 3) {
                     if ($User->login == $pArr["rememberLogin"]) {
                         if ($User->secretQuestion == $pArr["rememberQuestion"]) {
-                            $User->password = $pArr["rememberPassword"];
+                            $User->password = Hash::make($pArr["rememberPassword"]);
                             $User->save();
                             $arr = [
                                 'status' => true,

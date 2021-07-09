@@ -14,6 +14,12 @@ $(document).ready(function () {
                     $('#inputEstado').val(data.uf);
                     $('#inputBairro').val(data.bairro);
                     $('#inputLogradouro').val(data.logradouro);
+                    addClassValid($('#inputCidade'));
+                    addClassValid($('#inputEstado'));
+                    addClassValid($('#inputBairro'));
+                    addClassValid($('#inputLogradouro'));
+                    $('#inputCep').removeClass('is-invalid');
+
                 } else {
                     alertGlobal('error', 'CPF não encontrado, digite novamente');
                 }
@@ -28,7 +34,7 @@ $(document).ready(function () {
             let login = $('#inputLogin').val();
             $.ajax({
                 method: 'get',
-                url: '/createAccount/createGetLogin',
+                url: `${baseurl}/createAccount/createGetLogin`,
                 data: {login}
             }).done(function (data) {
                 if (data.status) {
@@ -48,7 +54,7 @@ $(document).ready(function () {
             let email = $('#inputEmail').val();
             $.ajax({
                 method: 'get',
-                url: '/createAccount/createGetEmail',
+                url: `${baseurl}/createAccount/createGetEmail`,
                 data: {email}
             }).done(function (data) {
                 if (data.status) {
@@ -121,20 +127,23 @@ $(document).ready(function () {
             let email = $('#inputEmail').val();
             let keyword = $('#inputKeyword').val();
             let cep = $('#inputCep').val();
-            let cidade = $('#inputCidade').val();
-            let estado = $('#inputEstado').val();
-            let bairro = $('#inputBairro').val();
-            let logradouro = $('#inputLogradouro').val();
 
             $.ajax({
                 method: 'post',
-                url: '/createAccount/create',
+                url: `${baseurl}/createAccount/create`,
                 data: {
                     login, password,
                     name, email,
                     keyword, cep,
                 }
             }).done(function (data) {
+                if (data.status) {
+                    alertGlobal('success', 'Usuario cadastro com sucesso');
+                    setTimeout("window.location = `${baseurl}/`;", 3000);
+                    $('#inputSignup').addClass('disabled');
+                }else{
+                    alertGlobal('error', 'usuario ou e-mail já em uso, por favor tente novamente');
+                }
 
             });
 

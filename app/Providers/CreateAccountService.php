@@ -3,7 +3,7 @@
 namespace App\Providers;
 
 use App\Models\User;
-use App\Models\Users;
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Hash;
 use Exception;
 
@@ -29,7 +29,7 @@ class CreateAccountService {
         } catch (Exception $e) {
             $arr = [
                 'status' => false,
-                'message' => 'Ocorreu algum erro'
+                'message' => 'Ocorreu algum erro ao checar usuario'
             ];
         }
         return $arr;
@@ -55,24 +55,37 @@ class CreateAccountService {
         } catch (Exception $e) {
             $arr = [
                 'status' => false,
-                'message' => 'Ocorreu algum erro'
+                'message' => 'Ocorreu algum erro no checar email'
             ];
         }
         return $arr;
     }
 
     static function ServiceCreate($pArr) {
-        $User = new User();
-        $User->name = $pArr["name"];
-        $User->password = Hash::make($pArr["password"]);
-        $User->login = $pArr["login"];
-        $User->email = $pArr["email"];
-        // $User->email_verified_at = $pArr["email"]; duvida
-        $User->secretQuestion = $pArr["keyword"];
-        $User->postalCode = $pArr["cep"];
-        $User->admin = 0;
-        $User->blockedAccount = 0;
-        $User->save();
+        $arr = [];
+        try {
+            $User = new User();
+            $User->name = $pArr["name"];
+            $User->password = Hash::make($pArr["password"]);
+            $User->login = $pArr["login"];
+            $User->email = $pArr["email"];
+            $User->secretQuestion = $pArr["keyword"];
+            $User->postalCode = $pArr["cep"];
+            $User->admin = 0;
+            $User->blockedAccount = 0;
+            $User->save();
+            $arr = [
+                'status' => true,
+                'message' => 'Usuario cadastrado com sucesso'
+            ];
+        } catch (Exception $e) {
+            $arr = [
+                'status' => false,
+                'message' => 'Ocorreu algum erro na criação do usuario'
+            ];
+        }
+
+        return $arr;
     }
 }
 

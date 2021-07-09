@@ -3,31 +3,18 @@ $(document).ready(function () {
     $('#enter').on('click', function () {
         let email = $('#login').val();
         let password = $('#password').val();
-
         if (email == '' || password == '') {
-            Swal.fire(
-                'Campos em branco!',
-                'Por favor, preencha todos os campos!',
-                'error'
-            );
+            alertGlobal('error', 'Campos em branco, Por favor, preencha todos os campos!')
         } else {
             $.ajax({
                 method: 'post',
-                url: '/indexGetLogin',
+                url: `${baseurl}/indexGetLogin`,
                 data: {email, password}
             }).done(function (data) {
                 if (data.status) {
-                    Swal.fire(
-                        'Bem vindo ' + data.name + '!',
-                        '',
-                        'success'
-                    );
+                    alertGlobal('success', `Bem vindo ${data.name}!`)
                 } else {
-                    Swal.fire(
-                        data.message,
-                        '',
-                        'error'
-                    );
+                    alertGlobal('error', `${data.message}`)
                 }
             });
         }
@@ -40,30 +27,18 @@ $(document).ready(function () {
         let rememberPassword = $('#rememberNewPassword').val();
         console.log(rememberPassword);
         if (rememberEmail == '' || rememberLogin == '') {
-            Swal.fire(
-                'Existem campos obrigatorios vazios',
-                '',
-                'error'
-            );
+            alertGlobal('error', 'Existem campos obrigatorios vazios')
         } else {
             $.ajax({
                 method: 'post',
-                url: '/postRemember',
+                url: `${baseurl}/postRemember`,
                 data: {rememberEmail, rememberLogin, rememberQuestion, rememberPassword}
             }).done(function (data) {
                 if (data.status) {
-                    Swal.fire(
-                        data.message,
-                        '',
-                        'success'
-                    );
+                    alertGlobal('success', `${data.message}`)
                     $('#rememberPassword').modal('hide');
                 } else {
-                    Swal.fire(
-                        data.message,
-                        '',
-                        'error'
-                    );
+                    alertGlobal('error', `${data.message}`)
                 }
             });
         }

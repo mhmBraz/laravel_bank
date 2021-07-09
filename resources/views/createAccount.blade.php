@@ -3,7 +3,7 @@
 @section('title', 'Cadastro')
 
 @section('scripts')
-    <script type="text/javascript" src="/js/createAccount.js"></script>
+    <script type="text/javascript" src="{{asset('js/createAccount.js')}}"></script>
 @endsection
 
 @section('content')
@@ -21,7 +21,7 @@
                     <hr class="mt-2">
 
                     <input type="text" class="form-control mb-1" id="inputLogin" placeholder="Login">
-                    <input type="text" class="form-control mb-1" id="inputPassword" placeholder="Password">
+                    <input type="password" class="form-control mb-1" id="inputPassword" placeholder="Password">
                 </div>
                 <div class="my-3 mt-0">
                     <h1 class="h6  text-center"> Perfil </h1>

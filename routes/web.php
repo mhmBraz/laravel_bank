@@ -18,15 +18,14 @@ use App\Http\Controllers\CreateAccountController;
 
 Route::prefix('/')->group(function () {
     Route::get('/', [IndexController::class, 'indexView']);
+    Route::get('/createAccount', [CreateAccountController::class, 'createAccountView']);
 
-
-    Route::get('/indexGetLogin', [IndexController::class, 'indexCheckLogin']);
+    Route::post('/indexGetLogin', [IndexController::class, 'indexCheckLogin']);
     Route::post('/postLogin', [IndexController::class, 'indexCheckLogin']);
     Route::post('/postRemember', [IndexController::class, 'indexRemember']);
 });
 
 Route::prefix('createAccount')->group(function () {
-    Route::get('/', [CreateAccountController::class, 'createAccountView']);
 
     Route::get('/createGetLogin', [CreateAccountController::class, 'createCheckLogin']);
     Route::get('/createGetEmail', [CreateAccountController::class, 'createGetEmail']);

@@ -3,7 +3,7 @@
 @section('title', 'Tela inicial')
 
 @section('scripts')
-  <script type="text/javascript" src="/js/index.js"></script>
+  <script type="text/javascript" src="{{asset('js/index.js')}}"></script>
 @endsection
 
 @section('content')
@@ -30,76 +30,6 @@
 
       <div class="d-flex align-items-center justify-content-center mt-0">
         <button id="enter" class="btn btn-primary rounded-0"> Entrar <i class="fas fa-sign-in-alt"></i> </button>
-      </div>
-    </div>
-  </div>
-
-
-  <!-- ModalADD -->
-  <div class="modal fade" id="addModal" tabindex="-1" aria-labelledby="addModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-          <form class="row g-3 needs-validation">
-
-            <div>
-              <label class="form-label">Name</label>
-              <input type="text" class="form-control" id="nameADD">
-            </div>
-
-            <div class="col-lg-3 col-md-3">
-              <label class="form-label">Cep</label>
-              <input type="text" class="form-control" id="cepADD">
-              <button id="cep" type="button" class="btn btn-primary">Pesquisar</button>
-            </div>
-
-
-            <div class="col-lg-7 col-md-7">
-              <label class="form-label">Rua</label>
-              <input type="text" class="form-control" id="ruaADD">
-            </div>
-
-            <div class="col-lg-5 col-md-5">
-              <label class="form-label">Cidade</label>
-              <input type="text" class="form-control" id="cidadeADD">
-            </div>
-
-            <div class="col-lg-5 col-md-5">
-              <label class="form-label">Bairro</label>
-              <input type="text" class="form-control" id="bairroADD">
-            </div>
-
-            <div class="col-lg-5 col-md-5">
-              <label class="form-label">UF</label>
-              <input type="text" class="form-control" id="ufADD">
-            </div>
-
-            <div>
-              <label class="form-label">Age</label>
-              <input type="date" class="form-control" id="ageADD">
-            </div>
-
-            <div>
-              <label class="form-label">Login</label>
-              <input type="text" class="form-control" id="loginADD">
-            </div>
-
-            <div>
-              <label class="form-label">Password</label>
-              <input type="password" class="form-control" id="passwordADD">
-            </div>
-
-            <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button id="buttonAdicionar" type="button" class="btn btn-primary" data-bs-dismiss="modal">
-                Adicionar
-              </button>
-            </div>
-          </form>
-        </div>
       </div>
     </div>
   </div>
