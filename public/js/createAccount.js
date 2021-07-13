@@ -35,7 +35,7 @@ $(document).ready(function () {
             $.ajax({
                 method: 'get',
                 url: `${baseurl}/createAccount/createGetLogin`,
-                data: {login}
+                data: { login }
             }).done(function (data) {
                 if (data.status) {
                     addClassIsvalid($('#inputLogin'));
@@ -55,7 +55,7 @@ $(document).ready(function () {
             $.ajax({
                 method: 'get',
                 url: `${baseurl}/createAccount/createGetEmail`,
-                data: {email}
+                data: { email }
             }).done(function (data) {
                 if (data.status) {
                     addClassIsvalid($('#inputEmail'));
@@ -139,12 +139,13 @@ $(document).ready(function () {
             }).done(function (data) {
                 if (data.status) {
                     alertGlobal('success', 'Usuario cadastro com sucesso');
-                    setTimeout("window.location = `${baseurl}/`;", 3000);
+                    setTimeout( () => {
+                        window.location = `${baseurl}/${data.login}`
+                    }, 3000);
                     $('#inputSignup').addClass('disabled');
-                }else{
+                } else {
                     alertGlobal('error', 'usuario ou e-mail já em uso, por favor tente novamente');
                 }
-
             });
 
 

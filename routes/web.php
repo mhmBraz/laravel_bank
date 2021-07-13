@@ -19,6 +19,7 @@ use App\Http\Controllers\CreateAccountController;
 Route::prefix('/')->group(function () {
     Route::get('/', [IndexController::class, 'indexView']);
     Route::get('/createAccount', [CreateAccountController::class, 'createAccountView']);
+    Route::get('/profile/{login}', [IndexController::class, 'profile']);
 
     Route::post('/indexGetLogin', [IndexController::class, 'indexCheckLogin']);
     Route::post('/postLogin', [IndexController::class, 'indexCheckLogin']);
@@ -35,4 +36,3 @@ Route::prefix('createAccount')->group(function () {
 Route::prefix('admin')->group(function () {
     Route::get('/', [IndexController::class, 'admin']);
 });
-

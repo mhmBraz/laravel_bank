@@ -9,12 +9,17 @@ $(document).ready(function () {
             $.ajax({
                 method: 'post',
                 url: `${baseurl}/indexGetLogin`,
-                data: {email, password}
+                data: { email, password }
             }).done(function (data) {
                 if (data.status) {
-                    alertGlobal('success', `Bem vindo ${data.name}!`)
+                    let login = data.login;
+                    alertGlobal('success', `Bem vindo ${data.name}!`);
+                    setTimeout(() => {
+                        window.location.href = `${baseurl}/profile/${login}`;
+                    }, 3000);
+
                 } else {
-                    alertGlobal('error', `${data.message}`)
+                    alertGlobal('error', `${data.message}`);
                 }
             });
         }
@@ -25,14 +30,13 @@ $(document).ready(function () {
         let rememberLogin = $('#rememberLogin').val();
         let rememberQuestion = $('#rememberSecretQuestion').val();
         let rememberPassword = $('#rememberNewPassword').val();
-        console.log(rememberPassword);
         if (rememberEmail == '' || rememberLogin == '') {
             alertGlobal('error', 'Existem campos obrigatorios vazios')
         } else {
             $.ajax({
                 method: 'post',
                 url: `${baseurl}/postRemember`,
-                data: {rememberEmail, rememberLogin, rememberQuestion, rememberPassword}
+                data: { rememberEmail, rememberLogin, rememberQuestion, rememberPassword }
             }).done(function (data) {
                 if (data.status) {
                     alertGlobal('success', `${data.message}`)

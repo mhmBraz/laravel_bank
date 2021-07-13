@@ -3,7 +3,6 @@
 namespace App\Providers;
 
 use App\Models\User;
-use App\Models\Users;
 use Illuminate\Support\Facades\Auth;
 use Exception;
 use Illuminate\Support\Facades\Hash;
@@ -16,6 +15,7 @@ class IndexService {
                 $arr = [
                     'status' => true,
                     'message' => 'Usuario encontrado',
+                    'login' => Auth()->user()->login,
                     'name' => Auth()->user()->name
                 ];
             } else {

@@ -1,10 +1,18 @@
-@extends('layouts.main')
-
+@extends('layouts.profileMain')
 @section('title', 'Profile')
-
 @section('scripts')
-    <script type="text/javascript" src="/js/profile.js"></script>
+<script>
+    const login = "{{$login}}";
+</script>
+<script type="text/javascript" src="{{asset('js/profile.js')}}"></script>
 @endsection
-<h1>teste</h1>
 @section('content')
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="card border border-primary rounded  py-5 px-3">
+        <h1 class="text-center mb-0"> Perfil </h1>
+      <hr class="mt-2">
+        </div>
+    </div>
+</div>
 @endsection
