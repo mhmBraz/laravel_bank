@@ -25,7 +25,7 @@
                             <a class="nav-link" href="{{env('APP_URL')}}/createAccount">Account detail</a>
                         </li>
                     </ul>
-                    <a class="nav-link" href="{{env('APP_URL')}}/"> <span class="text-secondary"> Sair</span> </a>
+                    <a class="nav-link" href="{{env('APP_URL')}}/logout"> <span class="text-secondary"> Sair</span> </a>
                 </div>
             </div>
         </nav>

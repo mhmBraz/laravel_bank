@@ -1,1 +1,3 @@
-alert(login);
+$(document).ready(function () {
+
+});

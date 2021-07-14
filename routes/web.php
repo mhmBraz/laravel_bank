@@ -20,6 +20,8 @@ Route::prefix('/')->group(function () {
     Route::get('/', [IndexController::class, 'indexView']);
     Route::get('/createAccount', [CreateAccountController::class, 'createAccountView']);
     Route::get('/profile/{login}', [IndexController::class, 'profile']);
+    Route::get('/logout', [IndexController::class, 'logout']);
+
 
     Route::post('/indexGetLogin', [IndexController::class, 'indexCheckLogin']);
     Route::post('/postLogin', [IndexController::class, 'indexCheckLogin']);
