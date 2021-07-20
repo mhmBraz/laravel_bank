@@ -38,4 +38,5 @@
     @include('layouts.scripts')
     @yield('scripts')
 </body>
+
 </html>

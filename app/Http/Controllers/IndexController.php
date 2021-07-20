@@ -12,6 +12,11 @@ class IndexController extends Controller
     {
         return view('welcome');
     }
+    public function logout()
+    {
+        Auth::logout();
+        return redirect('/');
+    }
 
     public function profile($login)
     {
@@ -25,11 +30,6 @@ class IndexController extends Controller
             return redirect('/');
         }
     }
-    public function logout()
-    {
-        Auth::logout();
-        return redirect('/');
-    }
 
     public function indexCheckLogin(Request $req)
     {
@@ -42,6 +42,11 @@ class IndexController extends Controller
     {
 
         return response()->json(IndexService::ServiceRemember($req->all()));
+    }
+
+    public function banks()
+    {
+        return response()->json(IndexService::ServiceGetBanks());
     }
 
     public function admin()

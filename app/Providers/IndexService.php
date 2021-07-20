@@ -3,6 +3,7 @@
 namespace App\Providers;
 
 use App\Models\User;
+use App\Models\Bank;
 use Illuminate\Support\Facades\Auth;
 use Exception;
 use Illuminate\Support\Facades\Hash;
@@ -35,7 +36,6 @@ class IndexService
 		}
 		return $arr;
 	}
-
 
 	static function ServiceRemember($pArr)
 	{
@@ -82,6 +82,25 @@ class IndexService
 				'message' => 'Ocorreu algum erro'
 			];
 		}
+		return $arr;
+	}
+
+	static function ServiceGetBanks()
+	{
+		$arr = [];
+		try {
+			$banks = Bank::all();
+			$arr = [
+				'status' => true,
+				'banks' => $banks
+			];
+		} catch (Exception $e) {
+			$arr = [
+				'status' => false,
+				'message' => 'Ocorreu algum erro'
+			];
+		}
+
 		return $arr;
 	}
 }
