@@ -31,7 +31,7 @@
                 </div>
 
                 <div class="col text-center">
-                    <h2 class="h2 title mb-2">Historico</h2>
+                    <h2 class="h2 title mb-2">Extrato</h2>
                     <table class="table table-striped table-bordered">
                         <thead>
                             <tr>
@@ -72,14 +72,14 @@
                         <div class="col">
                             <div class="form-group col-8">
                                 <label for="login" class="form-label small mb-0">Valor </label>
-                                <input type="text" class="form-control" id="login">
+                                <input id="price" type="text" class="form-control">
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
+                    <button id="saveBank" type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>

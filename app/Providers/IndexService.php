@@ -84,23 +84,4 @@ class IndexService
 		}
 		return $arr;
 	}
-
-	static function ServiceGetBanks()
-	{
-		$arr = [];
-		try {
-			$banks = Bank::all();
-			$arr = [
-				'status' => true,
-				'banks' => $banks
-			];
-		} catch (Exception $e) {
-			$arr = [
-				'status' => false,
-				'message' => 'Ocorreu algum erro'
-			];
-		}
-
-		return $arr;
-	}
 }

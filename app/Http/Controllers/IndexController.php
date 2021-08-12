@@ -44,11 +44,6 @@ class IndexController extends Controller
         return response()->json(IndexService::ServiceRemember($req->all()));
     }
 
-    public function banks()
-    {
-        return response()->json(IndexService::ServiceGetBanks());
-    }
-
     public function admin()
     {
         return view('admin');
