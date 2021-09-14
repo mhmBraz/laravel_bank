@@ -21,7 +21,7 @@ $(document).ready(function () {
                     $('#inputCep').removeClass('is-invalid');
 
                 } else {
-                    alertGlobal('error', 'CPF não encontrado, digite novamente');
+                    alertGlobal('error', 'CEP não encontrado, digite novamente');
                 }
             });
         } else {

@@ -15,12 +15,22 @@ class IndexService
 		$arr = [];
 		try {
 			if (Auth::attempt($pArr)) {
-				$arr = [
-					'status' => true,
-					'message' => 'Usuario encontrado',
-					'login' => Auth()->user()->login,
-					'name' => Auth()->user()->name
-				];
+                $User = User::where(['email' => $pArr["email"]])
+                    ->first();
+			    if ($User->blockedAccount == 3){
+                    $arr = [
+                        'status' => false,
+                        'message' => 'Usuario Bloqueado, favor entrar em contato com o administrador do sistema'
+                    ];
+                }else
+                {
+                    $arr = [
+                        'status' => true,
+                        'message' => 'Usuario encontrado',
+                        'login' => Auth()->user()->login,
+                        'name' => Auth()->user()->name
+                    ];
+                }
 			} else {
 				$arr = [
 					'status' => false,
@@ -30,7 +40,7 @@ class IndexService
 		} catch (Exception $e) {
 			$arr = [
 				'status' => false,
-				'message' => 'Erro ao encontra usuario',
+				'message' => 'Erro ao encontrar usuario',
 				'error' => $e->getMessage()
 			];
 		}

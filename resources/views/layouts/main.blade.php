@@ -7,9 +7,23 @@
 
     <title>@yield ('title')</title>
     @include('layouts.links')
+
+    <style>
+        html, body{
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            height: 100%;
+        }
+        .background{
+            background-image: url("../../../laravel_bank/public/img/background01.svg");
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+    </style>
 </head>
 
-<body>
+<body class="background">
     <header>
         <nav class="navbar navbar-expand-lg navbar-light">
             <div class="container">
@@ -28,12 +42,13 @@
                 </div>
             </div>
         </nav>
-        <hr class="m-1">
     </header>
     @yield('content')
     <footer>
         <br><br>
-        <p> Desenvolvido por Matheus Braz</p>
+        <div class="d-flex justify-content-center">
+            <p class="text-white"> Desenvolvido por Matheus Braz</p>
+        </div>
     </footer>
     @include('layouts.scripts')
     @yield('scripts')
