@@ -10,7 +10,7 @@ class IndexController extends Controller
 {
     public function indexView()
     {
-        return view('welcome');
+        return view('home.index');
     }
     public function logout()
     {
@@ -20,9 +20,9 @@ class IndexController extends Controller
 
     public function profile($login)
     {
-        if (Auth()->user() == true) {
+        if (Auth::check()) {
             if (Auth()->user()->login == $login || Auth()->user()->admin == 1) {
-                return view('profile', ['login' => $login]);
+                return view('profile.profile', ['login' => $login]);
             } else {
                 return redirect('/');
             }

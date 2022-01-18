@@ -5,8 +5,6 @@ namespace App\Providers;
 use App\Models\Account;
 use App\Models\Bank;
 use Exception;
-use Illuminate\Support\Facades\Auth;
-use PHPUnit\TextUI\XmlConfiguration\ExtensionCollectionIterator;
 
 class BanksService {
 
