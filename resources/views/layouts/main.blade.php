@@ -36,7 +36,7 @@
                             <a class="nav-link active" aria-current="page" href="{{env('APP_URL')}}/">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{env('APP_URL')}}/createAccount">CreateAccount</a>
+                            <a class="nav-link" href="{{route('index.createAccountView')}}">CreateAccount</a>
                         </li>
                     </ul>
                 </div>

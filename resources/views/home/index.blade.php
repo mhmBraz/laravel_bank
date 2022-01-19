@@ -21,7 +21,6 @@
         <small>
           <a class="link-dark text-decoration-none" data-bs-toggle="modal" href="#rememberPassword" role="button">Esqueci minha senha</a>
         </small>
-
       </div>
 
       <div class="d-flex align-items-center justify-content-center mt-3">

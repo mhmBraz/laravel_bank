@@ -9,7 +9,8 @@ use App\Http\Controllers\BankController;
 
 Route::prefix('/')->group(function () {
     Route::get('/', [IndexController::class, 'indexView']);
-    Route::get('/createAccount', [CreateAccountController::class, 'createAccountView']);
+    Route::get('/createAccount', [CreateAccountController::class, 'createAccountView'])
+        ->name('index.createAccountView');
     Route::get('/profile/{login}', [IndexController::class, 'profile']);
     Route::get('/logout', [IndexController::class, 'logout']);
 
