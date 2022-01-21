@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\User;
 
-use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 use App\Providers\ProfileService;
+use function response;
+
 class ProfileController extends Controller
 {
     public function accounts($login)

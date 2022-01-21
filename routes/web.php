@@ -1,41 +1,41 @@
 <?php
 
+use App\Http\Controllers\Bank\BankController;
+use App\Http\Controllers\Home\CreateAccountController;
+use App\Http\Controllers\Home\IndexController;
 use Illuminate\Support\Facades\Route;
 
-use App\Http\Controllers\IndexController;
-use App\Http\Controllers\CreateAccountController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\BankController;
-
 Route::prefix('/')->group(function () {
-    Route::get('/', [IndexController::class, 'indexView']);
-    Route::get('/createAccount', [CreateAccountController::class, 'createAccountView'])
-        ->name('index.createAccountView');
-    Route::get('/profile/{login}', [IndexController::class, 'profile']);
-    Route::get('/logout', [IndexController::class, 'logout']);
 
-    Route::post('/indexGetLogin', [IndexController::class, 'indexCheckLogin']);
-    Route::post('/indexGetLogin', [IndexController::class, 'indexCheckLogin']);
-    Route::post('/postLogin', [IndexController::class, 'indexCheckLogin']);
-    Route::post('/postRemember', [IndexController::class, 'indexRemember']);
-});
+    Route::get('/', [IndexController::class, 'indexView'])
+        ->name('index.view');
+    Route::prefix('/cadastrar')->group(function () {
+        Route::get('/', [CreateAccountController::class, 'createAccountView'])
+            ->name('index.createAccountView');
+        Route::get('/getLogin', [CreateAccountController::class, 'createAccountView'])
+            ->name('index.createAccountView');
+        Route::get('/', [CreateAccountController::class, 'createAccountView'])
+            ->name('index.createAccountView');
+    });
 
-Route::prefix('createAccount')->group(function () {
-
-    Route::get('/createGetLogin', [CreateAccountController::class, 'createCheckLogin']);
-    Route::get('/createGetEmail', [CreateAccountController::class, 'createGetEmail']);
-    Route::post('/create', [CreateAccountController::class, 'create']);
-});
-
-Route::prefix('admin')->group(function () {
-    Route::get('/', [IndexController::class, 'admin']);
-});
-
-Route::prefix('/profile/{login}')->group(function () {
-    Route::get('/accounts', [ProfileController::class, 'accounts']);
+    //criar controle de user
+    Route::get('/perfil/{login}', [IndexController::class, 'profile'])
+        ->name('index.profile');
+    Route::get('/logout', [IndexController::class, 'logout'])
+        ->name('logout');
+    Route::get('/checkLogin', [IndexController::class, 'checkLogin'])
+        ->name('index.checkLogin');
+    Route::get('/checkEmail', [IndexController::class, 'checkEmail'])
+        ->name('index.checkEmail');
+    Route::post('/createAccount', [IndexController::class, 'createAccount'])
+        ->name('index.createAccount');
+    Route::post('/rememberPass', [IndexController::class, 'rememberPass'])
+        ->name('index.rememberPass');
 });
 
 Route::prefix('/banks')->group(function () {
-    Route::get('/', [BankController::class, 'banks']);
-    Route::post('/createAccounts', [BankController::class, 'createAccounts']);
+    Route::get('/get', [BankController::class, 'get'])
+        ->name('banks.get');
+    Route::post('/createAccount', [BankController::class, 'createAccount'])
+        ->name('banks.createAccount');
 });

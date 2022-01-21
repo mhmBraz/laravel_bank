@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Bank;
 
+use App\Http\Controllers\Controller;
 use App\Providers\BanksService;
 use Illuminate\Http\Request;
+use function response;
 
 class BankController extends Controller {
     public function banks()

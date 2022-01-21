@@ -1,10 +1,15 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Home;
 
+use App\Http\Controllers\Controller;
+use App\Providers\IndexService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Providers\IndexService;
+use function auth;
+use function redirect;
+use function response;
+use function view;
 
 class IndexController extends Controller
 {

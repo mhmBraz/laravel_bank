@@ -1,8 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Home;
 
+use App\Http\Controllers\Controller;
+use App\Http\Controllers\CreateAccountService;
 use Illuminate\Http\Request;
+use function response;
+use function view;
 
 class CreateAccountController extends Controller {
 

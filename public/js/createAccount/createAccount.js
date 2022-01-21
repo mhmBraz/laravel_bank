@@ -1,9 +1,7 @@
 $(document).ready(function () {
-    // $('#inputCidade').addClass()
-    // $('#inputCidade').removeClass()
-    // $('#inputCidade').hasClass()
     $('#inputCepBusca').on('click', function () {
-        if ($('#inputCep').val() != '' && $('#inputCep').val().length >= 8) {
+        let cep = $('#inputCep').val();
+        if (cep !== '' && cep.length >= 8) {
             let cep = $('#inputCep').val();
             $.ajax({
                 method: 'get',
