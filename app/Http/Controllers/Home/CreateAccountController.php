@@ -14,11 +14,11 @@ class CreateAccountController extends Controller {
         return view('account.createAccount');
     }
 
-    public function createCheckLogin(Request $req) {
+    public function checkLogin(Request $req) {
         return response()->json(CreateAccountService::ServiceCheckLogin($req->all()));
     }
 
-    public function createGetEmail(Request $req) {
+    public function checkEmail(Request $req) {
         return response()->json(CreateAccountService::ServiceCheckEmail($req->all()));
     }
 

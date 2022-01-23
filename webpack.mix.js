@@ -11,7 +11,17 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .postCss('resources/css/app.css', 'public/css', [
-        //
-    ]);
+//Scripts
+mix.babel([
+    'resources/js/common/util.js',
+], 'public/js/common/util.js').version();
+
+//Plugins
+mix.babel([
+    'resources/js/plugins/jquery.js',
+], 'public/js/plugins/jquery.js').version();
+
+//Scripts
+mix.babel([
+    'resources/js/home/index.js',
+], 'public/js/home/index.js').version();

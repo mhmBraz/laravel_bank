@@ -34,5 +34,5 @@
 @endsection
 
 @section('scripts')
-    <script type="text/javascript" src="{{asset('js/index.js')}}"></script>
+    <script src="{{ mix('/js/home/index.js') }}" type="text/javascript"></script>
 @endsection

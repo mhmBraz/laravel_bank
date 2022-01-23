@@ -16,7 +16,7 @@
             height: 100%;
         }
         .background{
-            background-image: url("../../../laravel_bank/public/img/background01.svg");
+            background-image: url("{{URL::asset('/images/image_name.png')}}");
             background-repeat: no-repeat;
             background-size: cover;
         }
@@ -33,10 +33,10 @@
                 <div class="collapse navbar-collapse" id="navbarText">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="{{route('index.createAccountView')}}">Home</a>
+                            <a class="nav-link active" aria-current="page" href="{{route('home.view')}}">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="{{route('index.createAccountView')}}">CreateAccount</a>
+                            <a class="nav-link" href="{{route('home.createAccountView')}}">CreateAccount</a>
                         </li>
                     </ul>
                 </div>
