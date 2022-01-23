@@ -7,7 +7,7 @@
 
     <title>@yield ('title')</title>
     @include('layouts.links')
-
+    @routes
     <style>
         html, body{
             margin: 0;
@@ -16,7 +16,7 @@
             height: 100%;
         }
         .background{
-            background-image: url("{{URL::asset('/images/image_name.png')}}");
+            {{--background-image: url("{{URL::asset('/images/image_name.png')}}");--}}
             background-repeat: no-repeat;
             background-size: cover;
         }

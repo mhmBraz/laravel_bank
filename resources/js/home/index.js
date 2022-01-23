@@ -1,51 +1,21 @@
 $(document).ready(function () {
 
+    checkLogin();
+} )
+
+const checkLogin = function () {
     $('#enter').on('click', function () {
-        let email = $('#login').val();
+        let email    = $('#login').val();
         let password = $('#password').val();
-        if (email == '' || password == '') {
-            alertGlobal('error', 'Campos em branco, Por favor, preencha todos os campos!')
-        } else {
-            $.ajax({
-                method: 'post',
-                url: `${baseurl}/indexGetLogin`,
-                data: { email, password }
-            }).done(function (data) {
-                if (data.status) {
-                    let login = data.login;
-                    alertGlobal('success', `Bem vindo ${data.name}!`);
-                    setTimeout(() => {
-                        window.location.href = `${baseurl}/profile/${login}`;
-                    }, 3000);
 
-                } else {
-                    alertGlobal('error', `${data.message}`);
-                }
-            });
+        if (email === '' || password === '') {
+            SweetAlert('error', 'Campos em branco, Por favor, preencha todos os campos!')
+        } else {
+            const successFunction = function (response) {
+                console.log(response)
+            }
+            let data = '&email=' + email + ' &password=' + password;
+            sendRequisition('GET',route('home.checkLogin'),data,successFunction)
         }
     });
-
-    $('#savePassword').on('click', function () {
-        let rememberEmail = $('#rememberEmail').val();
-        let rememberLogin = $('#rememberLogin').val();
-        let rememberQuestion = $('#rememberSecretQuestion').val();
-        let rememberPassword = $('#rememberNewPassword').val();
-        if (rememberEmail == '' || rememberLogin == '') {
-            alertGlobal('error', 'Existem campos obrigatorios vazios')
-        } else {
-            $.ajax({
-                method: 'post',
-                url: `${baseurl}/postRemember`,
-                data: { rememberEmail, rememberLogin, rememberQuestion, rememberPassword }
-            }).done(function (data) {
-                if (data.status) {
-                    alertGlobal('success', `${data.message}`)
-                    $('#rememberPassword').modal('hide');
-                } else {
-                    alertGlobal('error', `${data.message}`)
-                }
-            });
-        }
-
-    });
-})
+}

@@ -3,13 +3,9 @@
 @section('title', 'Tela inicial')
 
 @section('content')
-
 <div class="container mt-5">
   <div class="row justify-content-center">
     <div class="card border rounded col-lg-4 col-xl-3 col-md-5 py-5 px-3 shadow-lg">
-        <div>
-            <h1 class="text-center mb-3 d-flex align-items-center justify-content-center"> <img src="../../laravel_bank/public/img/user.svg" class="w-25"/> Login </h1>
-        </div>
       <div class="form-group mb-3">
         <label for="login" class="form-label small mb-0"> <i class="fas fa-at"></i> E-mail </label>
         <input type="text" class="form-control" id="login">

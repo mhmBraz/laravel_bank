@@ -9,13 +9,19 @@ Route::prefix('/')->group(function () {
 
     Route::get('/', [IndexController::class, 'indexView'])
         ->name('home.view');
+    Route::get('/checkLogin', [IndexController::class, 'checkLogin'])
+        ->name('home.checkLogin');
+
+
+
+
     Route::prefix('/cadastrar')->group(function () {
         Route::get('/', [CreateAccountController::class, 'createAccountView'])
             ->name('home.createAccountView');
         Route::get('/checkEmail', [CreateAccountController::class, 'checkEmail'])
             ->name('home.checkEmail');
-        Route::get('/checkLogin', [CreateAccountController::class, 'checkLogin'])
-            ->name('home.checkLogin');
+//        Route::get('/checkLogin', [CreateAccountController::class, 'checkLogin'])
+//            ->name('home.checkLogin');
     });
 
     //criar controle de user
@@ -23,8 +29,8 @@ Route::prefix('/')->group(function () {
         ->name('home.profile');
     Route::get('/logout', [IndexController::class, 'logout'])
         ->name('logout');
-    Route::get('/checkLogin', [IndexController::class, 'checkLogin'])
-        ->name('home.checkLogin');
+//    Route::get('/checkLogin', [IndexController::class, 'checkLogin'])
+//        ->name('home.checkLogin');
     Route::get('/checkEmail', [IndexController::class, 'checkEmail'])
         ->name('home.checkEmail');
     Route::post('/createAccount', [IndexController::class, 'createAccount'])

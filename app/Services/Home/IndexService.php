@@ -1,53 +1,46 @@
 <?php
 
-namespace App\Providers;
+namespace App\Services\Home;
 
 use App\Models\User;
-use App\Models\Bank;
+use App\Repositories\User\UserRepo;
 use Illuminate\Support\Facades\Auth;
 use Exception;
 use Illuminate\Support\Facades\Hash;
 
 class IndexService
 {
-	static function ServiceLogin($pArr)
+	public function ServiceLogin($pArr)
 	{
-		$arr = [];
-		try {
-			if (Auth::attempt($pArr)) {
-                $User = User::where(['email' => $pArr["email"]])
-                    ->first();
-			    if ($User->blockedAccount == 3){
-                    $arr = [
-                        'status' => false,
-                        'message' => 'Usuario Bloqueado, favor entrar em contato com o administrador do sistema'
-                    ];
-                }else
-                {
-                    $arr = [
-                        'status' => true,
-                        'message' => 'Usuario encontrado',
-                        'login' => Auth()->user()->login,
-                        'name' => Auth()->user()->name
-                    ];
-                }
-			} else {
-				$arr = [
-					'status' => false,
-					'message' => 'E-mail ou senha incorretos'
-				];
-			}
-		} catch (Exception $e) {
-			$arr = [
-				'status' => false,
-				'message' => 'Erro ao encontrar usuario',
-				'error' => $e->getMessage()
-			];
-		}
+        $arr  = [];
+        $user = new UserRepo();
+        $user = $user->getUser($pArr);
+
+        if ($user) {
+            if ($user->blockedAccount == 3) {
+                $arr = [
+                    'success' => false,
+                    'message' => 'Usuario Bloqueado, favor entrar em contato com o administrador do sistema'
+                ];
+            } else {
+                $arr = [
+                    'success' => true,
+                    'message' => 'Login com sucesso',
+                    'login'   => $user->login,
+                    'name'    => $user->name
+                ];
+            }
+        } else {
+            $arr = [
+                'success' => false,
+                'message' => 'E-mail ou senha incorretos'
+            ];
+        }
+
 		return $arr;
 	}
 
-	static function ServiceRemember($pArr)
+	public function ServiceRemember($pArr)
 	{
 
 		try {
