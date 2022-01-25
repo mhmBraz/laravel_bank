@@ -23,10 +23,11 @@ class IndexService
                     'message' => 'Usuario Bloqueado, favor entrar em contato com o administrador do sistema'
                 ];
             } else {
+                Auth::login($user);
                 $arr = [
                     'success' => true,
                     'message' => 'Login com sucesso',
-                    'login'   => $user->login,
+                    'id'      => $user->id,
                     'name'    => $user->name
                 ];
             }

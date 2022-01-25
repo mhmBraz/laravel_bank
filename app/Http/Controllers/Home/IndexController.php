@@ -15,7 +15,7 @@ use function view;
 
 class IndexController extends Controller
 {
-    public function indexView()
+    public function index()
     {
         return view('home.index');
     }

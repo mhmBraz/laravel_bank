@@ -18,9 +18,7 @@ var sendRequisition = function sendRequisition(method, route, data, successFunct
         }
       }
     },
-    error: function error(response) {
-
-    }
+    error: function error(response) {}
   });
 };
 

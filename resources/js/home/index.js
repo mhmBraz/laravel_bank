@@ -12,7 +12,14 @@ const checkLogin = function () {
             SweetAlert('error', 'Campos em branco, Por favor, preencha todos os campos!')
         } else {
             const successFunction = function (response) {
-                console.log(response)
+                Swal.fire({
+                    icon: 'success',
+                    text: response.message,
+                    timer: 3000
+                }).then(() => {
+                    window.location.href = route('home.profile', response.id);
+                })
+
             }
             let data = '&email=' + email + ' &password=' + password;
             sendRequisition('GET',route('home.checkLogin'),data,successFunction)
