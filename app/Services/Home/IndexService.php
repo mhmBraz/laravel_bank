@@ -2,6 +2,7 @@
 
 namespace App\Services\Home;
 
+use Illuminate\Support\Facades\Response;
 use App\Models\User;
 use App\Repositories\User\UserRepo;
 use Illuminate\Support\Facades\Auth;
@@ -12,33 +13,30 @@ class IndexService
 {
 	public function ServiceLogin($pArr)
 	{
-        $arr  = [];
         $user = new UserRepo();
         $user = $user->getUser($pArr);
 
         if ($user) {
             if ($user->blockedAccount == 3) {
-                $arr = [
+                return Response::json([
                     'success' => false,
                     'message' => 'Usuario Bloqueado, favor entrar em contato com o administrador do sistema'
-                ];
+                ]);
             } else {
                 Auth::login($user);
-                $arr = [
+                return Response::json([
                     'success' => true,
                     'message' => 'Login com sucesso',
                     'id'      => $user->id,
                     'name'    => $user->name
-                ];
+                ]);
             }
         } else {
-            $arr = [
+            return Response::json([
                 'success' => false,
                 'message' => 'E-mail ou senha incorretos'
-            ];
+            ]);
         }
-
-		return $arr;
 	}
 
 	public function ServiceRemember($pArr)

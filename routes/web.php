@@ -19,12 +19,22 @@ Route::prefix('/')->group(function () {
     });
 
 
+    //fazer cadastrar
     Route::prefix('/cadastrar')->group(function () {
         Route::get('/', [CreateAccountController::class, 'createAccountView'])
             ->name('home.createAccountView');
         Route::get('/checkEmail', [CreateAccountController::class, 'checkEmail'])
             ->name('home.checkEmail');
     });
+
+
+
+
+
+
+
+
+
 
     Route::get('/logout', [IndexController::class, 'logout'])
         ->name('logout');

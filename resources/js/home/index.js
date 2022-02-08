@@ -1,7 +1,7 @@
 $(document).ready(function () {
 
     checkLogin();
-} )
+});
 
 const checkLogin = function () {
     $('#enter').on('click', function () {

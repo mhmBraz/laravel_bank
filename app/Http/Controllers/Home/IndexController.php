@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Home;
 
 use App\Http\Controllers\Controller;
 use App\Services\Home\IndexService;
-use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Response;
 use function auth;
 use function redirect;
 use function response;
@@ -28,24 +26,10 @@ class IndexController extends Controller
 
     public function checkLogin(Request $request)
     {
-        try {
-            $serviceIndex = new IndexService();
-            $serviceIndex = $serviceIndex->ServiceLogin($request->all());
+        $serviceIndex = new IndexService();
+        $serviceIndex = $serviceIndex->ServiceLogin($request->all());
 
-            return $serviceIndex;
-        }
-        catch (QueryException $e) {
-            return Response::json([
-                'success' => false,
-                'message' => 'Erro ao realizar consulta, tente novamente mais tarde.',
-            ], 400);
-        }
-        catch (\Exception $e){
-            return Response::json([
-                'success' => false,
-                'message' => $e->getMessage(),
-            ], 400);
-        }
+        return $serviceIndex;
     }
 
 

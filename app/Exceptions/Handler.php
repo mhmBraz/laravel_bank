@@ -2,6 +2,8 @@
 
 namespace App\Exceptions;
 
+use Illuminate\Support\Facades\Response;
+use Illuminate\Database\QueryException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
 use Throwable;
 
@@ -27,6 +29,17 @@ class Handler extends ExceptionHandler
         'password_confirmation',
     ];
 
+    public function render($request, Throwable $exception)
+    {
+        if($exception instanceof QueryException){
+            return Response::json([
+                'success' => false,
+                'message' => 'Erro ao realizar consulta, tente novamente mais tarde.'
+            ]);
+        }
+        return parent::render($request, $exception);
+    }
+
     /**
      * Register the exception handling callbacks for the application.
      *
@@ -35,7 +48,9 @@ class Handler extends ExceptionHandler
     public function register()
     {
         $this->reportable(function (Throwable $e) {
-            //
+            if($e instanceof QueryException){
+                //criar log de erro
+            }
         });
     }
 }
